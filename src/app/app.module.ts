@@ -3,6 +3,9 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { 
+  AngularFireDatabase } from 'angularfire2/database';
+  import{FirebaseApp} from 'angularfire2'
 
 import { Facebook } from '@ionic-native/facebook'
 
@@ -49,7 +52,9 @@ import { EventProvider } from '../providers/event/event';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     ShareService,
-    EventProvider
+    EventProvider,
+    AngularFireDatabase,
+    FirebaseApp
   ]
 })
 export class AppModule {}

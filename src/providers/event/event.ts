@@ -10,7 +10,7 @@ import firebase from 'firebase'
 */
 @Injectable()
 export class EventProvider {
-
+public eventList: Array<any>;
   constructor() {
     console.log('Hello EventProvider Provider');
   }
@@ -26,5 +26,13 @@ createEvent(eventName: string, place: string, date: string): firebase.Promise<an
     palce: place,
     date: date
   });
+}
+
+getEventList():firebase.database.Reference  {
+  return firebase.database().ref('/events')
+}
+
+getEventDetail(eventId:string): firebase.database.Reference {
+  return firebase.database().ref('/events').child(eventId);
 }
 }

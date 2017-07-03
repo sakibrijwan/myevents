@@ -12,6 +12,15 @@
 </ion-header>
 
 <ion-content padding>
+ <ion-list>
+    <ion-item *ngFor="let event of eventList" (click)='goToEventDetail(event.id)'>
+      <h2>{{event?.eventName}}</h2>
+      <p>Place: <strong>{{event?.place}}</strong></p>
+      <p>Date: <strong >{{event?.date}}</strong></p>
+    </ion-item>
+  </ion-list>
+
+
   <ion-list>
   <ion-item>
     <ion-avatar item-start>
@@ -22,6 +31,17 @@
   </ion-item>
 </ion-list>
   
+  <ion-list *ngFor='let event of '>
+  <ion-item>
+    <ion-avatar item-start>
+      <img src="{{displayImage}}">
+    </ion-avatar>
+    <h2>{{ displayName }}</h2>
+    <p>{{email}}</p>
+  </ion-item>
+</ion-list>
+
+
   Thank you {{name}}. You are logged in!
   <p>
     Your email address is:{{email}}

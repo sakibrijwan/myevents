@@ -48,8 +48,9 @@ public loading: any;
     this.eventCreateForm.value.place,this.eventCreateForm.value.date)
     .then((data) => {
       this.loading.dismiss().then( () => {
+        this.navCtrl.pop();
         let alert = this.alertCtrl.create({
-          message: data.message,
+          message: 'Your Event has been created successfully.',
           buttons: [
             {
               text: "Ok",

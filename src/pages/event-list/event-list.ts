@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+
 /**
  * Generated class for the EventListPage page.
  *
@@ -22,5 +23,6 @@ export class EventListPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad EventListPage');
   }
+
 
 }
