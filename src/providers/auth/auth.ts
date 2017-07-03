@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+
 import firebase from 'firebase';
 
 /*
@@ -12,9 +12,9 @@ import firebase from 'firebase';
 @Injectable()
 export class AuthProvider {
 
-  constructor() {
-    console.log('Hello AuthProvider Provider');
-  }
+
+ constructor() { //Add reference to native firebase SDK
+     }
 
 loginUser(email: string, password: string): firebase.Promise<any> {
     return firebase.auth().signInWithEmailAndPassword(email, password);
@@ -25,6 +25,7 @@ signupUser(email: string, password: string): firebase.Promise<any> {
     .then( newUser => {
         firebase.database().ref('/userProfile').child(newUser.uid)
         .set({ email: email });
+        
   });
 }
 
@@ -33,6 +34,7 @@ resetPassword(email: string): firebase.Promise<void> {
 }
 
 logoutUser(): firebase.Promise<void> {
+  console.log('signedout');
   return firebase.auth().signOut();
 }
 

@@ -2,11 +2,9 @@ import { Component, NgZone } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
 import firebase from 'firebase';
+import {TabsPage} from '../pages/tabs/tabs'
 
-
-import { HomePage } from '../pages/home/home';
 @Component({
   templateUrl: 'app.html'
 })
@@ -40,7 +38,7 @@ const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       this.rootPage = 'login';
       unsubscribe();
     } else { 
-      this.rootPage = HomePage;
+      this.rootPage = TabsPage;
       unsubscribe();
     }
   });     

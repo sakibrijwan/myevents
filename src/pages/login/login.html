@@ -5,7 +5,7 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar color="primary">
+  <ion-navbar color="primary" hideBackButton>
     <ion-title>
       Log In
     </ion-title>
@@ -46,6 +46,19 @@
   <button ion-button block clear (click)="goToSignup()">
     Create a new account
   </button>
+     <!--<ion-card *ngIf="userProfile">
+  <img [src]="userProfile.photoURL"/>
+  <ion-card-content>
+    <ion-card-title>
+      {{ userProfile.displayName }}
+    </ion-card-title>
+    <p>
+      The UID for this new user is {{userProfile.uid}} and the email is {{userProfile.email}}
+    </p>
+  </ion-card-content>
+</ion-card>-->
+        <button (click)="loginWithFacebook()" ion-button block>Facebook login</button>
+    
 
   <button ion-button block clear (click)="goToResetPassword()">
     I forgot my password

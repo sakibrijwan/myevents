@@ -7,12 +7,56 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>EventCreate</ion-title>
+    <ion-title>Create Event</ion-title>
+      <ion-buttons start>
+    <button ion-button icon-only (click)="eventClose()">
+      <ion-icon name="close"></ion-icon>
+    </button>
+  </ion-buttons>
+    <!--<button ion-button icon-only (click)="eventClose()" side='right'>
+    <ion-icon name="close"></ion-icon>
+  </button>-->
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+
+<form [formGroup]='eventCreateForm' (submit)='eventCreate()' novalidate>
+    <ion-item>
+      <ion-label stacked>Event Name</ion-label>
+      <ion-input type="text" formControlName="eventName" placeholder="Event Name"></ion-input>
+    </ion-item>
+    <!--<ion-item class="error-message" 
+      *ngIf="!loginForm.controls.email.valid  && loginForm.controls.email.dirty">
+      <p>Please enter a valid email.</p>
+    </ion-item>-->
+
+    <ion-item>
+      <ion-label stacked>Place</ion-label>
+      <ion-input type="text" formControlName="place" placeholder="Place"></ion-input>
+    </ion-item>
+    <!--<ion-item class="error-message" 
+      *ngIf="!loginForm.controls.password.valid  && loginForm.controls.password.dirty">
+      <p>Your password needs more than 6 characters.</p>
+    </ion-item>-->
+
+<ion-item>
+      <ion-label stacked>Date</ion-label>
+      <ion-input  type="text" formControlName="date" placeholder="Date"></ion-input>
+    </ion-item>
+    <!--<ion-item class="error-message" 
+      *ngIf="!loginForm.controls.password.valid  && loginForm.controls.password.dirty">
+      <p>Your password needs more than 6 characters.</p>
+    </ion-item>-->
+
+
+
+    <button ion-button block type="submit">
+      Create
+    </button>
+</form>
+
 
 </ion-content>

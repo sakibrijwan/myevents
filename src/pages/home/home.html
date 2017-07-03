@@ -1,14 +1,41 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      List Events
     </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
+  <ion-list>
+  <ion-item>
+    <ion-avatar item-start>
+      <img src="{{displayImage}}">
+    </ion-avatar>
+    <h2>{{ displayName }}</h2>
+    <p>{{email}}</p>
+  </ion-item>
+</ion-list>
+  
+  Thank you {{name}}. You are logged in!
   <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
+    Your email address is:{{email}}
   </p>
+  <!--<ion-card *ngIf="userProfile">
+  <img [src]="userProfile.photoURL"/>
+  <ion-card-content>
+    <ion-card-title>
+      {{data}}
+    </ion-card-title>
+    <p>
+      The UID for this new user is  and the email is 
+    </p>
+  </ion-card-content>
+</ion-card>-->
 </ion-content>
+
