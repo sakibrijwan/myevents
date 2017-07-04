@@ -2,6 +2,7 @@
 export class ShareService {  
   
     email:string;
+    //uid:string;
     firstName: string;
     lastName: string;
  
@@ -11,7 +12,6 @@ export class ShareService {
         this.email='';
     }
   
-
     setEmail(email) {
         this.email = email;
     }

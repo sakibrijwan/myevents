@@ -12,13 +12,19 @@
 </ion-header>
 
 <ion-content padding>
- <ion-list>
-    <ion-item *ngFor="let event of eventList" (click)='goToEventDetail(event.id)'>
-      <h2>{{event?.eventName}}</h2>
+ <ion-list>   
+    <ion-item-sliding  *ngFor="let event of eventList">
+      <ion-item (click)='goToEventDetail(event.id)'>
+      <p><strong>{{event?.eventName}}</strong><p>
       <p>Place: <strong>{{event?.place}}</strong></p>
       <p>Date: <strong >{{event?.date}}</strong></p>
-    </ion-item>
-  </ion-list>
+      </ion-item>
+      <ion-item-options>
+      <button ion-button color="primary" (click)="goToEditEventDetail(event.id)"><ion-icon name='clipboard'></ion-icon> Edit</button>
+      <button ion-button color="danger" (click)="goToDeleteEvent(event.id)"><ion-icon name='trash'></ion-icon> Delete</button>
+    </ion-item-options>
+    </ion-item-sliding >
+</ion-list>
 
 
   <ion-list>
@@ -44,7 +50,7 @@
 
   Thank you {{name}}. You are logged in!
   <p>
-    Your email address is:{{email}}
+    Your email address is:{{email}}{{uid}}
   </p>
   <!--<ion-card *ngIf="userProfile">
   <img [src]="userProfile.photoURL"/>

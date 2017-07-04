@@ -27,11 +27,12 @@ public currentEvent:any;
   }
 
   ionViewDidEnter(){
+  if (this.navParams.get('eventId')!='null'){
   this.eventProvider.getEventDetail(this.navParams.get('eventId'))
   .on('value', eventSnapshot => {
     this.currentEvent = eventSnapshot.val();
     this.currentEvent.id = eventSnapshot.key;
-  });
+  });}
 }
 
 }

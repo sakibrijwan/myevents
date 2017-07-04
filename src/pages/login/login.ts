@@ -76,6 +76,7 @@ loginUser(): void {
       this.loading.dismiss().then( () => {
        this.navCtrl.push(TabsPage);
        this.shareService.setEmail(authData.email);
+       //this.shareService.setId(authData.key);
        // this.app.getRootNav().setRoot(TabsPage);
       });
     }, error => {

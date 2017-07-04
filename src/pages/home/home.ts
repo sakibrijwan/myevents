@@ -1,5 +1,5 @@
 import { Component,NgZone } from '@angular/core';
-import { NavController, NavParams,ModalController,PopoverController } from 'ionic-angular';
+import { NavController, NavParams,ModalController,PopoverController,ViewController,LoadingController,AlertController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import {PopoverComponent} from '../../components/popover/popover'
 import { EventProvider } from '../../providers/event/event';
@@ -12,13 +12,15 @@ import {ShareService} from '../services/share-service';
 export class HomePage {
 public name:any;
 public email:any;
+public loading:any;
 public displayImage:any;
 public eventList: Array<any>=[{}];
 zone:NgZone;
   constructor(public navCtrl: NavController, public navParams: NavParams, 
               public modalController:ModalController,public authProvider: AuthProvider,
               public popoverCtrl: PopoverController,private shareService: ShareService,
-              public eventProvider:EventProvider  
+              public eventProvider:EventProvider,public viewCtrl:ViewController, public loadingCtrl: LoadingController,
+              public alertCtrl: AlertController  
               ) {
                 this.zone=new NgZone({enableLongStackTrace: false});               
 
@@ -39,7 +41,6 @@ zone:NgZone;
      this.displayImage=this.navParams.get('photoURL');
     // console.log(this.data);
      this.email = this.shareService.getEmail();
-
   }
 ionViewDidEnter() {
    this.eventProvider.getEventList().orderByChild('date')
@@ -64,6 +65,31 @@ goToEventDetail(eventId){
  this.navCtrl.push('event-detail', { 'eventId': eventId });
 }
 
+goToEditEventDetail(eventId){
+ this.navCtrl.push('event-edit', { 'eventId': eventId });
+}
+
+goToDeleteEvent(eventId){
+     
+        let alert = this.alertCtrl.create({
+          message: 'Do you want to delete this event?',
+          buttons: [
+            {
+              text: "Cancel",
+              role: 'cancel'
+            },
+                  {
+        text: 'Ok',
+        handler: () => {
+          this.eventProvider.deleteEvent(eventId);
+          console.log('Buy clicked');
+        }
+      }
+          ]
+        });
+        alert.present();
+    
+}
 
 }
 

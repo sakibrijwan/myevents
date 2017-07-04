@@ -11,28 +11,57 @@ import firebase from 'firebase'
 @Injectable()
 export class EventProvider {
 public eventList: Array<any>;
+private eventsTable:any;
+public userId: any;
+public currentUser:firebase.User;
+public userProfile:firebase.database.Reference;
   constructor() {
     console.log('Hello EventProvider Provider');
-  }
+    
+    this.eventsTable=firebase.database().ref('/events') //Initiate database table
+             
+     }
 
 
 createEvent(eventName: string, place: string, date: string): firebase.Promise<any> {
-  
+ 
   console.log(eventName);
-  
   return firebase.database().ref('/events')
   .push({
     eventName: eventName,
-    palce: place,
-    date: date
+    place: place,
+    date: date,
+    UserProfileUserId:firebase.auth().currentUser.uid
   });
 }
 
 getEventList():firebase.database.Reference  {
-  return firebase.database().ref('/events')
+  return this.eventsTable;
 }
 
 getEventDetail(eventId:string): firebase.database.Reference {
-  return firebase.database().ref('/events').child(eventId);
+  if(eventId!='null')
+  return this.eventsTable.child(eventId);
 }
+
+getEditEventDetail(eventId:string): firebase.database.Reference {
+  if(eventId!='null')
+  return this.eventsTable.child(eventId);
+}
+
+editEventDetail(eventId:string,eventName:string, place:string, date:string): firebase.Promise<any>{
+  if(eventId!='null')
+  return this.eventsTable.child(eventId)
+  .update({
+    eventName:eventName,
+    place:place,
+    date:date  
+  });
+}
+
+deleteEvent(eventId:string): firebase.Promise<any>{
+if(eventId!='null')
+return this.eventsTable.child(eventId).remove();
+}
+
 }
