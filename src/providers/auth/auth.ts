@@ -24,7 +24,8 @@ signupUser(email: string, password: string): firebase.Promise<any> {
     return firebase.auth().createUserWithEmailAndPassword(email, password)
     .then( newUser => {
         firebase.database().ref('/userProfile').child(newUser.uid)
-        .set({ email: email });
+        .set({ email: email,
+              role:'user' });
         
   });
 }

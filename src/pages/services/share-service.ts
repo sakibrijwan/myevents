@@ -5,14 +5,16 @@ export class ShareService {
     //uid:string;
     firstName: string;
     lastName: string;
+    photoURL:string;
  
     constructor() {
         this.firstName = '';
         this.lastName = '';
         this.email='';
+        this.photoURL='';
     }
   
-    setEmail(email) {
+      setEmail(email) {
         this.email = email;
     }
       getEmail() {
@@ -26,5 +28,13 @@ export class ShareService {
   
     getUserName() {
         return this.firstName + ' ' + this.lastName;
-    }   
+    } 
+
+    setphotoURL(photoURL){
+        this.photoURL=photoURL;
+    }  
+
+    getphotoURL(){
+        return this.photoURL;
+    }
 }

@@ -29,6 +29,7 @@ export class LoginPage {
 public loginForm:FormGroup;
 public loading:Loading;
 userProfile: any = null;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public loadingCtrl: LoadingController, public alertCtrl: AlertController,
               public authProvider: AuthProvider, public formBuilder: FormBuilder,
@@ -55,6 +56,7 @@ userProfile: any = null;
             this.userProfile = success;
             this.navCtrl.push(TabsPage);
             this.shareService.setEmail(this.userProfile.email);
+            this.shareService.setphotoURL(this.userProfile.photoURL);
             //let modal= this.modalCtrl.create(HomePage,this.userProfile);
             //modal.present();
             // this.navCtrl.push(HomePage,this.userProfile);
@@ -76,8 +78,6 @@ loginUser(): void {
       this.loading.dismiss().then( () => {
        this.navCtrl.push(TabsPage);
        this.shareService.setEmail(authData.email);
-       //this.shareService.setId(authData.key);
-       // this.app.getRootNav().setRoot(TabsPage);
       });
     }, error => {
       this.loading.dismiss().then( () => {

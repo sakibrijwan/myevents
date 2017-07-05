@@ -7,6 +7,7 @@
       <button ion-button icon-only (click)="presentPopover($event)">
         <ion-icon name="more"></ion-icon>
       </button>
+      
     </ion-buttons>
   </ion-navbar>
 </ion-header>
@@ -26,31 +27,9 @@
     </ion-item-sliding >
 </ion-list>
 
-
-  <ion-list>
-  <ion-item>
-    <ion-avatar item-start>
-      <img src="{{displayImage}}">
-    </ion-avatar>
-    <h2>{{ displayName }}</h2>
-    <p>{{email}}</p>
-  </ion-item>
-</ion-list>
-  
-  <ion-list *ngFor='let event of '>
-  <ion-item>
-    <ion-avatar item-start>
-      <img src="{{displayImage}}">
-    </ion-avatar>
-    <h2>{{ displayName }}</h2>
-    <p>{{email}}</p>
-  </ion-item>
-</ion-list>
-
-
   Thank you {{name}}. You are logged in!
   <p>
-    Your email address is:{{email}}{{uid}}
+    Your email address is:{{email}}
   </p>
   <!--<ion-card *ngIf="userProfile">
   <img [src]="userProfile.photoURL"/>

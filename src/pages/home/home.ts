@@ -41,24 +41,37 @@ zone:NgZone;
      this.displayImage=this.navParams.get('photoURL');
     // console.log(this.data);
      this.email = this.shareService.getEmail();
+     this.displayImage=this.shareService.getphotoURL();
+
+      console.log('email:'+this.shareService.getEmail())
+        var windowDismiss=0;
+
+        this.eventProvider.getEventList().orderByChild('date')
+        .on('value', snapshot => {
+          windowDismiss=1;
+          this.loading.dismiss(); 
+          this.eventList = [];
+          this.zone.run(()=>{
+          snapshot.forEach( snap => {
+            this.eventList.push({
+              id:snap.key,
+              eventName: snap.val().eventName,
+              place: snap.val().place,
+              date: snap.val().date,
+            });
+            return false
+          });
+          });
+        });;
+        console.log(this.eventList);
+        this.loading = this.loadingCtrl.create({content : "Populating events , please wait..."});
+        this.loading.present();
+        if(windowDismiss==1)
+        this.loading.dismiss();  
+     
   }
-ionViewDidEnter() {
-   this.eventProvider.getEventList().orderByChild('date')
-   .on('value', snapshot => {
-    this.eventList = [];
-    this.zone.run(()=>{
-    snapshot.forEach( snap => {
-      this.eventList.push({
-        id:snap.key,
-        eventName: snap.val().eventName,
-        place: snap.val().place,
-        date: snap.val().date,
-      });
-      return false
-    });
-    });
-  });;
-   console.log(this.eventList);
+  
+ionViewDidEnter() { 
 }
 
 goToEventDetail(eventId){

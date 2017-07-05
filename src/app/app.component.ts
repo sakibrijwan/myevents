@@ -5,15 +5,18 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import firebase from 'firebase';
 import {TabsPage} from '../pages/tabs/tabs'
 
+import {ShareService} from '../pages/services/share-service';
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   rootPage:any;
   zone: NgZone;
+  public userProfile:any;
   
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, public shareService:ShareService) {
  
  var config = {
     apiKey: "AIzaSyBXmZRlFuP4XO1oRWHrLrBNOoQXQy4abqY",
@@ -39,6 +42,10 @@ const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       unsubscribe();
     } else { 
       this.rootPage = TabsPage;
+      this.userProfile =user;
+      this.shareService.setEmail(this.userProfile.email);
+      if(this.userProfile.photoURL)
+      this.shareService.setphotoURL(this.userProfile.photoURL);
       unsubscribe();
     }
   });     

@@ -5,12 +5,21 @@
 
 <ion-list>
   <ion-item>
-    Settings
+    <ion-row>
+      <ion-col>
+        <ion-avatar item-start>
+      <img src="{{displayImage}}">
+    </ion-avatar>
+    </ion-col>
+    <ion-col>
+    <span text-right>{{email}}</span>
+    </ion-col>
+    </ion-row>
   </ion-item>
-  <ion-item>
+  <ion-item text-right>
     Help
   </ion-item>
-  <ion-item (click)="logoutUser()">
+  <ion-item (click)="confirmLogout()" text-right>
     Signout
   </ion-item>
 </ion-list>
